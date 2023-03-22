@@ -1,16 +1,47 @@
 package service;
 
 import model.Carro;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+//Os testes por default não são executados na ordem escrita.
 
 public class CarroServiceTest {
+
+    CarroService carroService;
+
+    @BeforeClass
+    public static void beforeClass(){
+        //Executa uma vez antes dos testes.
+        System.out.println("Before class");
+    }
+
+    @Before
+    public void before(){
+        //Executa antes de cada teste.
+        System.out.println("Before");
+        carroService = new CarroService();
+    }
+
+    @After
+    public void after(){
+        //Executa antes de cada teste.
+        System.out.println("After");
+    }
+
+    @AfterClass
+    public static void afterClass(){
+        //Executa uma vez depois dos testes.
+        System.out.println("After class");
+    }
+
 
     //Cada teste será um método
     @Test
     public void deveAcelerarCorretamenteUmCarroLigado(){
         //Given
-        CarroService carroService = new CarroService();
+//        CarroService carroService = new CarroService();
         Carro carro = new Carro();
         carroService.ligar(carro);
 
@@ -28,7 +59,7 @@ public class CarroServiceTest {
     @Test
     public void deveLigarCorretamente(){
         //Given
-        CarroService carroService = new CarroService();
+//        CarroService carroService = new CarroService();
         Carro carro = new Carro();
 
         //When
@@ -41,7 +72,7 @@ public class CarroServiceTest {
     @Test
     public void carroEmMovimentoNaoPodeSerDesligado() {
 //        - Given: Um carro ligado; Um carro andando
-        CarroService carroService = new CarroService();
+//        CarroService carroService = new CarroService();
         Carro carro = new Carro();
         carroService.ligar(carro);
         carroService.acelerar(carro, 10);
@@ -54,7 +85,7 @@ public class CarroServiceTest {
     @Test
     public void carroNaoPodeUltrapassarVelocidadeMaxima() {
 //        - Given: Um carro ligado, Um carro andando na velocidade máxima
-    CarroService carroService = new CarroService();
+//    CarroService carroService = new CarroService();
         Carro carro = new Carro();
         carroService.ligar(carro);
         carro.setVelocidadeAtual(carro.getVelocidadeMaxima());
@@ -67,7 +98,7 @@ public class CarroServiceTest {
     @Test
     public void carroDesligadoNaoPodeAcelerar() {
         // Given: um carro desligado
-        CarroService carroService = new CarroService();
+//        CarroService carroService = new CarroService();
         Carro carro = new Carro();
 
         // When: acelerar e frear carro
@@ -82,7 +113,7 @@ public class CarroServiceTest {
     @Test
     public void carroDesligadoNaoPodeFrear() {
         // Given: um carro desligado
-        CarroService carroService = new CarroService();
+//        CarroService carroService = new CarroService();
         Carro carro = new Carro();
 
         // When: acelerar e frear carro
